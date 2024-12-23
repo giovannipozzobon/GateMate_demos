@@ -1,6 +1,6 @@
-OFL   = openFPGALoader
+OFL   = /home/parallels/Documents/Gatemate/openFPGALoader/build/openFPGALoader
 RM    = rm -rf
-
+CC_TOOL =/home/parallels/Documents/Gatemate/cc-toolchain-linux
 CC_TOOL_DIR=$(CC_TOOL)
 YOSYS = $(CC_TOOL)/bin/yosys/yosys
 P_R   = $(CC_TOOL)/bin/p_r/p_r

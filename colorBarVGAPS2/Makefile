@@ -1,6 +1,7 @@
-OFL   = openFPGALoader
+OFL   = /home/parallels/Documents/Gatemate/openFPGALoader/build/openFPGALoader
 RM    = rm -rf
 
+CC_TOOL=/home/parallels/Documents/Gatemate/cc-toolchain-linux
 CC_TOOL_DIR=$(CC_TOOL)
 YOSYS = $(CC_TOOL)/bin/yosys/yosys
 P_R   = $(CC_TOOL)/bin/p_r/p_r
@@ -33,7 +34,7 @@ $(TOP)_synth.v: $(OBJS)
 	$(YOSYS) -l synth.log $(YS_OPTS) -p 'read -sv $^; synth_gatemate -top $(TOP) -nomx8 -dff -vlog $(TOP)_synth.v'
 
 $(TOP)_00.cfg: $(TOP)_synth.v $(CONSTR)
-	$(P_R) -v -i $(TOP)_synth.v -ccf $(CONSTR) -o $(TOP) $(PRFLAGS) > $@.log
+	$(P_R) -v -i $(TOP)_synth.v -ccf $(CONSTR) -o $(TOP) $(PRFLAGS) 
 impl:$(TOP)_00.cfg
 
 jtag: $(TOP)_00.cfg

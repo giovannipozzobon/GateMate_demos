@@ -1,6 +1,7 @@
-OFL   = openFPGALoader
+OFL   = /home/parallels/Documents/Gatemate/openFPGALoader/build/openFPGALoader
 RM    = rm -rf
 
+CC_TOOL=/home/parallels/Documents/Gatemate/cc-toolchain-linux
 CC_TOOL_DIR=$(CC_TOOL)
 YOSYS = $(CC_TOOL)/bin/yosys/yosys
 P_R   = $(CC_TOOL)/bin/p_r/p_r
@@ -22,6 +23,8 @@ OBJS += ../libs/ios/serializer_gatemate_10_to_1_generic_ddr.v
 
 YS_OPTS = -D DISP_640x480_60Hz=1
 
+BOARD=olimex_gatemateevb
+
 all:impl
 synth: $(TOP)_synth.v
 $(TOP)_synth.v: $(OBJS)
@@ -32,10 +35,10 @@ $(TOP)_00.cfg: $(TOP)_synth.v $(CONSTR)
 impl:$(TOP)_00.cfg
 
 jtag: $(TOP)_00.cfg
-	$(OFL) $(OFLFLAGS) -b gatemate_evb_jtag $^
+	$(OFL) $(OFLFLAGS) -b $(BOARD) $^
 
 jtag-flash: $(TOP)_00.cfg
-	$(OFL) $(OFLFLAGS) -b gatemate_evb_jtag -f --verify $^
+	$(OFL) $(OFLFLAGS) -b $(BOARD) -f --verify $^
 
 clean:
 	$(RM) *.log *_synth.v *.history *.txt *.refwire *.refparam

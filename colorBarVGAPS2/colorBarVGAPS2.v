@@ -4,7 +4,7 @@
 
 module colorBarVGAPS2
 #(
-  parameter ps2core = 3 // 0-minimig 1-oberon 2-keyboard 3 - broken keyboard core
+  parameter ps2core = 1 // 0-minimig 1-oberon 2-keyboard 3 - broken keyboard core
 )
 (
 	input clk_i, 
